@@ -17,7 +17,7 @@ import OutputDetails from "./components/OutputDetails";
 import ThemeDropdown from "./components/ThemeDropdown";
 import LanguagesDropdown from "./components/LanguagesDropdown";
 
-const javascriptDefault = `// some comment`;
+const javascriptDefault = `console.log('hello');`;
 
 const Landing = () => {
   const [code, setCode] = useState(javascriptDefault);
@@ -71,7 +71,7 @@ const Landing = () => {
       language_id: language.id,
       // encode source code in base64
       source_code: btoa(code),
-      stdin: btoa(customInput),
+      stdin: customInput,
     };
     const options = {
       method: "POST",
@@ -86,7 +86,7 @@ const Landing = () => {
       data: formData,
     };
 
-    console.log(options.headers.headers);
+    console.log(options);
 
     axios
       .request(options)
@@ -109,8 +109,8 @@ const Landing = () => {
       url: "https://judge0-ce.p.rapidapi.com/submissions" + "/" + token,
       params: { base64_encoded: "true", fields: "*" },
       headers: {
-        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
-        "X-RapidAPI-Key": "1c7fa412b9mshc09cfdc0adff1f5p11c09ejsn7c9c8243205f",
+        'X-RapidAPI-Key': '1c7fa412b9mshc09cfdc0adff1f5p11c09ejsn7c9c8243205f',
+        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
       },
     };
 
