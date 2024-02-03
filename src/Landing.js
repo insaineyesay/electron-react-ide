@@ -110,13 +110,11 @@ const Landing = () => {
     console.log('speech to string', value);
     const options = {
       method: "GET",
-      url: "https://69da-216-54-50-106.ngrok-free.app/api/openai-api-call",
+      url: "http://cors-anywhere.herokuapp.com/https://69da-216-54-50-106.ngrok-free.app/api/openai-api-call",
       params: { COMMAND_PROMPT: "give me the sql code to create a new databse" },
       headers: {
-        // "content-type": "application/json",
-        // "Content-Type": "application/json",
-        // "ngrok-skip-browser-warning": "any",
-        // "Access-Control-Allow-Origin": "*"
+        "ngrok-skip-browser-warning": "any",
+        'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
       }
     };
 
@@ -125,7 +123,7 @@ const Landing = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log("res.data", response.data);
+        console.log("res.data", response);
         const codeResponse = response.data.code_output;
       })
       .catch((err) => {
