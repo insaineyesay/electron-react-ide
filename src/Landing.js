@@ -11,7 +11,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { defineTheme } from "./lib/defineTheme";
 import useKeyPress from "./hooks/useKeyPress";
-import Footer from "./components/Footer";
 import OutputWindow from "./components/OutputWindow";
 import CustomInput from "./components/CustomInput";
 import OutputDetails from "./components/OutputDetails";
@@ -76,16 +75,18 @@ const Landing = () => {
     };
     const options = {
       method: "POST",
-      url: process.env.REACT_APP_RAPID_API_URL,
+      url: "https://judge0-ce.p.rapidapi.com/submissions",
       params: { base64_encoded: "true", fields: "*" },
       headers: {
         "content-type": "application/json",
         "Content-Type": "application/json",
-        "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+        "X-RapidAPI-Key": "1c7fa412b9mshc09cfdc0adff1f5p11c09ejsn7c9c8243205f",
       },
       data: formData,
     };
+
+    console.log(options.headers.headers);
 
     axios
       .request(options)
@@ -105,13 +106,16 @@ const Landing = () => {
     // We will come to the implementation later in the code
     const options = {
       method: "GET",
-      url: process.env.REACT_APP_RAPID_API_URL + "/" + token,
+      url: "https://judge0-ce.p.rapidapi.com/submissions" + "/" + token,
       params: { base64_encoded: "true", fields: "*" },
       headers: {
-        "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+        "X-RapidAPI-Key": "1c7fa412b9mshc09cfdc0adff1f5p11c09ejsn7c9c8243205f",
       },
     };
+
+    console.log(options.url);
+
     try {
       let response = await axios.request(options);
       let statusId = response.data.status?.id;
@@ -222,7 +226,6 @@ const Landing = () => {
           {outputDetails && <OutputDetails outputDetails={outputDetails} />}
         </div>
       </div>
-      <Footer />
     </>
   );
 };
