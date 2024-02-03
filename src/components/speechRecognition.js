@@ -80,15 +80,6 @@ function SpeechRecognitionComponent({ onChange }) {
                     type="button"
                     onClick={handleListing}
                     className="record-btn btn">Record</button>
-
-                <div
-                //   className="microphone-icon-container"
-                //   ref={microphoneRef}
-                // //   onClick={handleListing}
-                // onClick={console.log('supposed to be listening')}
-                >
-                    {/* <img src={microPhoneIcon} className="microphone-icon" /> */}
-                </div>
                 <div className="microphone-status">
                     {isListening ? "Listening........." : "Click to start Listening"}
                 </div>
@@ -102,7 +93,9 @@ function SpeechRecognitionComponent({ onChange }) {
                 <div className="microphone-result-container">
                     <div
                         className="microphone-result-text"
-                        onChange={captureTranscript}>{transcript}</div>
+                        onChange={captureTranscript}>
+                            {transcript}
+                    </div>
                     <button className="microphone-reset btn" onClick={handleReset}>
                         Reset
                     </button>

@@ -103,6 +103,38 @@ const Landing = () => {
       });
   };
 
+  const handleSpeechToCode = (e, value) => {
+    // We will come to the implementation later in the code
+    setProcessing(true);
+    // const speechString = "give me the sql code to create a new databse";
+    console.log('speech to string', value);
+    const options = {
+      method: "GET",
+      url: "https://69da-216-54-50-106.ngrok-free.app/api/openai-api-call",
+      params: { COMMAND_PROMPT: "give me the sql code to create a new databse" },
+      headers: {
+        // "content-type": "application/json",
+        // "Content-Type": "application/json",
+        // "ngrok-skip-browser-warning": "any",
+        // "Access-Control-Allow-Origin": "*"
+      }
+    };
+
+    console.log(options);
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log("res.data", response.data);
+        const codeResponse = response.data.code_output;
+      })
+      .catch((err) => {
+        let error = err.response ? err.response.data : err;
+        setProcessing(false);
+        console.log(error);
+      });
+  };
+
   const checkStatus = async (token) => {
     // We will come to the implementation later in the code
     const options = {
@@ -198,6 +230,9 @@ const Landing = () => {
       </div>
       <div className="flex flex-row">
         <SpeechRecognitionComponent />
+      </div>
+      <div className="flex flex-row">
+        <button onClick={handleSpeechToCode}>Convert Speech to Code</button>
       </div>
       <div className="flex flex-row space-x-4 items-start px-4 py-4">
         <div className="flex flex-col w-full h-full justify-start items-end">
