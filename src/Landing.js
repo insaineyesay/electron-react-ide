@@ -16,6 +16,7 @@ import CustomInput from "./components/CustomInput";
 import OutputDetails from "./components/OutputDetails";
 import ThemeDropdown from "./components/ThemeDropdown";
 import LanguagesDropdown from "./components/LanguagesDropdown";
+import SpeechRecognitionComponent from "./components/speechRecognition";
 
 const javascriptDefault = `console.log('hello');`;
 
@@ -194,6 +195,9 @@ const Landing = () => {
         <div className="px-4 py-2">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </div>
+      </div>
+      <div className="flex flex-row">
+        <SpeechRecognitionComponent />
       </div>
       <div className="flex flex-row space-x-4 items-start px-4 py-4">
         <div className="flex flex-col w-full h-full justify-start items-end">
