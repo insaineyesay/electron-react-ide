@@ -71,6 +71,8 @@ const Landing = () => {
       }
     }
   };
+
+  // HANDLE THE COMPILATION (SEND THE CODE IN THE CodeEditorWindow to Judge0) --------
   const handleCompile = () => {
     // We will come to the implementation later in the code
     setProcessing(true);
@@ -109,26 +111,32 @@ const Landing = () => {
       });
   };
 
-  // Function to handle changes (e.g., updating transcript or code)
-const handleChange = (action, value) => {
-  if (action === "transcript") {
-    setTranscript(value); // Assuming you have a `setTranscript` state updater
-  } else if (action === "code") {
-    setCode(value);
-  }
-  // Add more conditions as needed
-};
+  // --------------------------------------------------------------
 
-  //  SPEECH RECOGNITION CALL BACK
-  const handleTranscriptReceived = (transcript) => {
-    // Use the transcript as needed, for example, update the code state
-    setCode(transcript);
-    // Or you might want to send it to an API
-    // sendTranscriptToApi(transcript);
+
+  //  SPEECH RECOGNITION CALL BACK ------------------------------
+  
+  // Function to handle changes (e.g., updating transcript or code)
+  const handleChange = (action, value) => {
+    if (action === "transcript") {
+      setTranscript(value); // Assuming you have a `setTranscript` state updater
+    } else if (action === "code") {
+      setCode(value);
+    }
+    // Add more conditions as needed
   };
+
+  // Inside Landing component
+  const handleSpeechToCodeResponse = (response) => {
+    console.log("Received from SpeechRecognitionComponent:", response);
+    // Now you can do something with the response, e.g., update state
+    setCode(response); // Example of setting code state with received data
+  };
+
 
   // --------------------------------------------------
 
+  // 
   const checkStatus = async (token) => {
     // We will come to the implementation later in the code
     const options = {
@@ -171,6 +179,8 @@ const handleChange = (action, value) => {
   function handleThemeChange(th) {
     // We will come to the implementation later in the code
   }
+  
+  
   useEffect(() => {
     defineTheme("oceanic-next").then((_) =>
       setTheme({ value: "oceanic-next", label: "Oceanic Next" })
@@ -225,6 +235,7 @@ const handleChange = (action, value) => {
       <div className="flex flex-row">
         <SpeechRecognitionComponent
           onChange={handleChange}
+          onCodeGenerated={handleSpeechToCodeResponse}
         />
       </div>
 

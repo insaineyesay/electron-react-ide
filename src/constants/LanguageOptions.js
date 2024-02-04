@@ -6,6 +6,12 @@ export const languageOptions = [
       value: "javascript",
     },
     {
+      id: 71,
+      name: "Python (3.8.1)",
+      label: "Python (3.8.1)",
+      value: "python",
+    },
+    {
       id: 45,
       name: "Assembly (NASM 2.14.02)",
       label: "Assembly (NASM 2.14.02)",

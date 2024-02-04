@@ -4,7 +4,7 @@ import axios from "axios";
 // import microPhoneIcon from "./microphone.svg";
 import { classnames } from "../utils/general";
 
-function SpeechRecognitionComponent({ onChange }) {
+function SpeechRecognitionComponent({ onChange, onCodeGenerated }) {
     const speechCommands = [
         {
             command: "open *",
@@ -59,9 +59,9 @@ function SpeechRecognitionComponent({ onChange }) {
         // Do something with the transcript data internally
         // For example, setting state, logging, or triggering another action
         console.log('Handling transcript change internally:', transcript);
-        if(onChange) {
+        if (onChange) {
             onChange(transcript);
-          }
+        }
     };
 
     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
@@ -98,7 +98,7 @@ function SpeechRecognitionComponent({ onChange }) {
         const options = {
             method: "GET",
             url: "http://cors-anywhere.herokuapp.com/https://69da-216-54-50-106.ngrok-free.app/api/openai-api-call",
-            params: { COMMAND_PROMPT: { transcript } },
+            params: { COMMAND_PROMPT: transcript },
             headers: {
                 "ngrok-skip-browser-warning": "any",
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -112,6 +112,11 @@ function SpeechRecognitionComponent({ onChange }) {
             .then(function (response) {
                 console.log("res.data", response);
                 const codeResponse = response.data.code_output;
+                // Use the prop function to send the data back
+                if (onCodeGenerated) {
+                    // props.onCodeGenerated(response.data); // Send the whole response back or just what you need
+                    onCodeGenerated(codeResponse); // Send the whole response back or just what you need
+                }
             })
             .catch((err) => {
                 let error = err.response ? err.response.data : err;
