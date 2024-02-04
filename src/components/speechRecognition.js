@@ -133,12 +133,12 @@ function SpeechRecognitionComponent({ onChange, onCodeGenerated }) {
                     <button
                         type="button"
                         onClick={handleListing}
-                        className="record-btn btn">Start/Rec
+                        className="record-btn btn">Start
                     </button>
     
                     <button
                         className="record-btn btn"
-                        onClick={handleSpeechToCode}>Convert Speech to Code
+                        onClick={handleSpeechToCode}>Automate
                     </button>
     
                     {/* Conditionally render Stop button based on isListening state */}
@@ -155,7 +155,7 @@ function SpeechRecognitionComponent({ onChange, onCodeGenerated }) {
                 </div>
     
                 <div className="microphone-status">
-                    {isListening ? "Listening........." : "Click to start Listening"}
+                    {isListening ? "Listening........." : ""}
                 </div>
             </div>
             <div className="microphone-result-container">
