@@ -112,7 +112,8 @@ body {
 
 .icon-class {
   float: right;
-  height: 35px;
+  height: 25px;
+  font-size: 14px;
   padding-left: 10px;
 }
 .record-btn {
@@ -150,15 +151,28 @@ body {
   /* border-radius: 25px; */
   box-shadow: 0px 0px 10px 5px #ffffff1a;
 }
+.compile-btn {
+  border: none;
+  padding: 10px 30px;
+  margin-right: 10px;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: #B9E192;
+  /* border-radius: 25px; */
+  box-shadow: 0px 0px 10px 5px #ffffff1a;
+}
 
 .microphone-result-container {
   text-align: center;
-
+  background-color: rgb(30, 41, 59);
   display: flex;
+  color: white;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
 
 }
 .microphone-result-text {

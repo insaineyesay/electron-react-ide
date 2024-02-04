@@ -5,7 +5,7 @@ import CodeEditorWindow from "./CodeEditorWindow";
 import axios from "axios";
 import { classnames } from "./utils/general";
 import { languageOptions } from "./constants/LanguageOptions";
-
+import compile from "./icons/compile.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -230,7 +230,7 @@ const Landing = () => {
       </div>
       <div className="flex flex-row space-x-4 px-4 py-4">
         {/* Left Column for OutputWindow, CustomInput, and Compile Button */}
-        <div className="left-container flex flex-col space-y-4 w-[50%]">
+        <div className="left-container flex flex-col space-y-4 w-[60%]">
           {/* <CustomInput customInput={customInput} setCustomInput={setCustomInput} /> */}
 
           <SpeechRecognitionComponent onChange={handleChange} onCodeGenerated={handleSpeechToCodeResponse} />
@@ -239,7 +239,7 @@ const Landing = () => {
         </div>
 
         {/* Right Column for CodeEditorWindow and Compile Button */}
-        <div className="right-container flex flex-col w-[50%] space-y-4"> {/* Adjust the flex direction and spacing */}
+        <div className="right-container flex flex-col w-[40%] space-y-4"> {/* Adjust the flex direction and spacing */}
           
             <CodeEditorWindow
               code={code}
@@ -251,12 +251,14 @@ const Landing = () => {
             <button
               onClick={handleCompile}
               disabled={!code}
-              className={classnames(
-                "mt-2 border-2 border-black rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white",
-                !code ? "opacity-50" : ""
-              )}
+              // className={classnames(
+              //   "mt-2 border-2 border-black rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white",
+              //   !code ? "opacity-50" : ""
+              // )}
+              className="compile-btn btn"
             >
               {processing ? "Processing..." : "Compile and Execute"}
+              <img src={compile} alt="Compile" className="icon-class" />
             </button>
 
 

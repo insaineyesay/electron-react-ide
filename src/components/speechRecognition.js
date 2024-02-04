@@ -3,11 +3,11 @@ import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognitio
 import axios from "axios";
 // import microPhoneIcon from "./microphone.svg";
 import { classnames } from "../utils/general";
-import compile from "../icons/compile.png";
 import download from "../icons/download.png";
 import generate from "../icons/generate.png";
 import record from "../icons/record.png";
 import stop from "../icons/stop.png";
+import reset from "../icons/reset.png";
 
 function SpeechRecognitionComponent({ onChange, onCodeGenerated }) {
     const speechCommands = [
@@ -135,9 +135,11 @@ function SpeechRecognitionComponent({ onChange, onCodeGenerated }) {
             <div className="microphone-container">
                 {/* Flex container for buttons */}
                 <div className="microphone-result-container">
-                    <div className={classnames(
-                        "focus:outline-none w-full border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white mt-2"
-                    )}>
+                    <div 
+                    // className={classnames(
+                    //     "focus:outline-none w-full border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white mt-2"
+                    // )}
+                    >
                         {transcript || "Your recorded speech will appear here."}
                     </div>
                 </div>
@@ -146,27 +148,31 @@ function SpeechRecognitionComponent({ onChange, onCodeGenerated }) {
                         type="button"
                         onClick={handleListing}
                         className="record-btn btn">Start
-                        <img src={record} alt="Start" className="icon-class" />
+                        <img src={record} alt="Record" className="icon-class" />
                     </button>
 
                     <button
                         className="record-btn btn"
                         onClick={handleSpeechToCode}>
                             Automate
-                            <img src={generate} alt="Start" className="icon-class" />
+                            <img src={generate} alt="Generate" className="icon-class" />
+                    </button>
+
+                    {/* Reset button always shown */}
+                    <button className="reset-btn btn" onClick={handleReset}>
+                        Reset
+                        <img src={reset} alt="Reset" className="icon-class" />
                     </button>
 
                     {/* Conditionally render Stop button based on isListening state */}
                     {isListening && (
                         <button className="stop-btn" onClick={stopHandle}>
                             Stop
+                            <img src={stop} alt="Stop" className="icon-class" />
                         </button>
                     )}
 
-                    {/* Reset button always shown */}
-                    <button className="reset-btn btn" onClick={handleReset}>
-                        Reset
-                    </button>
+
                 </div>
 
                 <div className="microphone-status">
