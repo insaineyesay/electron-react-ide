@@ -127,34 +127,44 @@ function SpeechRecognitionComponent({ onChange, onCodeGenerated }) {
 
     return (
         <div className="microphone-wrapper">
-            <div className="mircophone-container">
-                <button
-                    type="button"
-                    onClick={handleListing}
-                    className="record-btn btn">Record</button>
-                <div className="flex flex-row">
-                    <button onClick={handleSpeechToCode}>Convert Speech to Code</button>
-                </div>
-                <div className="microphone-status">
-                    {isListening ? "Listening........." : "Click to start Listening"}
-                </div>
-                {isListening && (
-                    <button className="stop-btn" onClick={stopHandle}>
-                        Stop
+            <div className="microphone-container">
+                {/* Flex container for buttons */}
+                <div className="flex justify-start items-center space-x-2"> {/* Adjust the spacing and alignment as needed */}
+                    <button
+                        type="button"
+                        onClick={handleListing}
+                        className="record-btn btn">Start/Rec
                     </button>
-                )}
-            </div>
-            {transcript && (
-                <div className="microphone-result-container">
-                    <div className="microphone-result-text">
-                        {transcript}
-                    </div>
-                    <button className="microphone-reset btn" onClick={handleReset}>
+    
+                    <button
+                        className="record-btn btn"
+                        onClick={handleSpeechToCode}>Convert Speech to Code
+                    </button>
+    
+                    {/* Conditionally render Stop button based on isListening state */}
+                    {isListening && (
+                        <button className="stop-btn" onClick={stopHandle}>
+                            Stop
+                        </button>
+                    )}
+    
+                    {/* Reset button always shown */}
+                    <button className="reset-btn btn" onClick={handleReset}>
                         Reset
                     </button>
                 </div>
-            )}
+    
+                <div className="microphone-status">
+                    {isListening ? "Listening........." : "Click to start Listening"}
+                </div>
+            </div>
+            <div className="microphone-result-container">
+                <div className="microphone-result-text">
+                    {transcript}
+                </div>
+            </div>
         </div>
     );
+    
 }
 export default SpeechRecognitionComponent;
