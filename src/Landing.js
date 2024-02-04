@@ -19,9 +19,15 @@ import LanguagesDropdown from "./components/LanguagesDropdown";
 import SpeechRecognitionComponent from "./components/speechRecognition";
 
 const javascriptDefault = `console.log('hello');`;
+const blankTranscript = '';
+
+// make sure the recorded text is referenced to send to the api
+// make sure the response is pasted in the code box
+// styling
 
 const Landing = () => {
   const [code, setCode] = useState(javascriptDefault);
+  const [transcript, setTranscript] = useState(blankTranscript)
   const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState(null);
   const [processing, setProcessing] = useState(null);
@@ -103,35 +109,25 @@ const Landing = () => {
       });
   };
 
-  const handleSpeechToCode = (e, value) => {
-    // We will come to the implementation later in the code
-    setProcessing(true);
-    // const speechString = "give me the sql code to create a new databse";
-    console.log('speech to string', value);
-    const options = {
-      method: "GET",
-      url: "http://cors-anywhere.herokuapp.com/https://69da-216-54-50-106.ngrok-free.app/api/openai-api-call",
-      params: { COMMAND_PROMPT: "give me the sql code to create a new databse" },
-      headers: {
-        "ngrok-skip-browser-warning": "any",
-        'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-      }
-    };
+  // Function to handle changes (e.g., updating transcript or code)
+const handleChange = (action, value) => {
+  if (action === "transcript") {
+    setTranscript(value); // Assuming you have a `setTranscript` state updater
+  } else if (action === "code") {
+    setCode(value);
+  }
+  // Add more conditions as needed
+};
 
-    console.log(options);
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log("res.data", response);
-        const codeResponse = response.data.code_output;
-      })
-      .catch((err) => {
-        let error = err.response ? err.response.data : err;
-        setProcessing(false);
-        console.log(error);
-      });
+  //  SPEECH RECOGNITION CALL BACK
+  const handleTranscriptReceived = (transcript) => {
+    // Use the transcript as needed, for example, update the code state
+    setCode(transcript);
+    // Or you might want to send it to an API
+    // sendTranscriptToApi(transcript);
   };
+
+  // --------------------------------------------------
 
   const checkStatus = async (token) => {
     // We will come to the implementation later in the code
@@ -227,11 +223,11 @@ const Landing = () => {
         </div>
       </div>
       <div className="flex flex-row">
-        <SpeechRecognitionComponent />
+        <SpeechRecognitionComponent
+          onChange={handleChange}
+        />
       </div>
-      <div className="flex flex-row">
-        <button onClick={handleSpeechToCode}>Convert Speech to Code</button>
-      </div>
+
       <div className="flex flex-row space-x-4 items-start px-4 py-4">
         <div className="flex flex-col w-full h-full justify-start items-end">
           <CodeEditorWindow
