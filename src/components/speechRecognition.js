@@ -3,6 +3,11 @@ import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognitio
 import axios from "axios";
 // import microPhoneIcon from "./microphone.svg";
 import { classnames } from "../utils/general";
+import compile from "../icons/compile.png";
+import download from "../icons/download.png";
+import generate from "../icons/generate.png";
+import record from "../icons/record.png";
+import stop from "../icons/stop.png";
 
 function SpeechRecognitionComponent({ onChange, onCodeGenerated }) {
     const speechCommands = [
@@ -129,42 +134,48 @@ function SpeechRecognitionComponent({ onChange, onCodeGenerated }) {
         <div className="microphone-wrapper">
             <div className="microphone-container">
                 {/* Flex container for buttons */}
+                <div className="microphone-result-container">
+                    <div className={classnames(
+                        "focus:outline-none w-full border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white mt-2"
+                    )}>
+                        {transcript || "Your recorded speech will appear here."}
+                    </div>
+                </div>
                 <div className="flex justify-start items-center space-x-2"> {/* Adjust the spacing and alignment as needed */}
                     <button
                         type="button"
                         onClick={handleListing}
                         className="record-btn btn">Start
+                        <img src={record} alt="Start" className="icon-class" />
                     </button>
-    
+
                     <button
                         className="record-btn btn"
-                        onClick={handleSpeechToCode}>Automate
+                        onClick={handleSpeechToCode}>
+                            Automate
+                            <img src={generate} alt="Start" className="icon-class" />
                     </button>
-    
+
                     {/* Conditionally render Stop button based on isListening state */}
                     {isListening && (
                         <button className="stop-btn" onClick={stopHandle}>
                             Stop
                         </button>
                     )}
-    
+
                     {/* Reset button always shown */}
                     <button className="reset-btn btn" onClick={handleReset}>
                         Reset
                     </button>
                 </div>
-    
+
                 <div className="microphone-status">
                     {isListening ? "Listening........." : ""}
                 </div>
             </div>
-            <div className="microphone-result-container">
-                <div className="microphone-result-text">
-                    {transcript}
-                </div>
-            </div>
+
         </div>
     );
-    
+
 }
 export default SpeechRecognitionComponent;

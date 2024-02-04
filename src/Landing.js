@@ -115,7 +115,7 @@ const Landing = () => {
 
 
   //  SPEECH RECOGNITION CALL BACK ------------------------------
-  
+
   // Function to handle changes (e.g., updating transcript or code)
   const handleChange = (action, value) => {
     if (action === "transcript") {
@@ -179,8 +179,8 @@ const Landing = () => {
   function handleThemeChange(th) {
     // We will come to the implementation later in the code
   }
-  
-  
+
+
   useEffect(() => {
     defineTheme("oceanic-next").then((_) =>
       setTheme({ value: "oceanic-next", label: "Oceanic Next" })
@@ -231,36 +231,40 @@ const Landing = () => {
       <div className="flex flex-row space-x-4 px-4 py-4">
         {/* Left Column for OutputWindow, CustomInput, and Compile Button */}
         <div className="left-container flex flex-col space-y-4 w-[50%]">
-          <OutputWindow outputDetails={outputDetails} />
-          <CustomInput customInput={customInput} setCustomInput={setCustomInput} />
-          {outputDetails && <OutputDetails outputDetails={outputDetails} />}
+          {/* <CustomInput customInput={customInput} setCustomInput={setCustomInput} /> */}
+
           <SpeechRecognitionComponent onChange={handleChange} onCodeGenerated={handleSpeechToCodeResponse} />
+          <OutputWindow outputDetails={outputDetails} />
+          {outputDetails && <OutputDetails outputDetails={outputDetails} />}
         </div>
-        
+
         {/* Right Column for CodeEditorWindow and Compile Button */}
         <div className="right-container flex flex-col w-[50%] space-y-4"> {/* Adjust the flex direction and spacing */}
-          <CodeEditorWindow
-            code={code}
-            onChange={onChange}
-            language={language?.value}
-            theme={theme.value}
-          />
-          {/* This button is now directly within the flex-column container, ensuring it appears below the CodeEditorWindow */}
-          <button
-            onClick={handleCompile}
-            disabled={!code}
-            className={classnames(
-              "mt-2 border-2 border-black rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white",
-              !code ? "opacity-50" : ""
-            )}
-          >
-            {processing ? "Processing..." : "Compile and Execute"}
-          </button>
+          
+            <CodeEditorWindow
+              code={code}
+              onChange={onChange}
+              language={language?.value}
+              theme={theme.value}
+            />
+            {/* This button is now directly within the flex-column container, ensuring it appears below the CodeEditorWindow */}
+            <button
+              onClick={handleCompile}
+              disabled={!code}
+              className={classnames(
+                "mt-2 border-2 border-black rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white",
+                !code ? "opacity-50" : ""
+              )}
+            >
+              {processing ? "Processing..." : "Compile and Execute"}
+            </button>
+
+
         </div>
       </div>
     </>
   );
 
-  
+
 };
 export default Landing;

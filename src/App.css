@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+body {
+  background-color: #FFE4E1;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -11,6 +15,14 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.drop-down-btn {
+  background-color: #FCC9B5;
+}
+
+.microphone-result-container {
+  min-height: 200px;
 }
 
 .App-header {
@@ -94,8 +106,14 @@
   outline: none;
   cursor: pointer;
   font-size: 20px;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   box-shadow: 0px 0px 10px 5px #ffffff1a;
+}
+
+.icon-class {
+  float: right;
+  height: 35px;
+  padding-left: 10px;
 }
 .record-btn {
   border: none;
@@ -104,8 +122,8 @@
   outline: none;
   cursor: pointer;
   font-size: 20px;
-  background-color: red;
-  border-radius: 25px;
+  background-color: #F194B8;
+  /* border-radius: 25px; */
   box-shadow: 0px 0px 10px 5px #ffffff1a;
 }
 
@@ -117,7 +135,7 @@
   cursor: pointer;
   font-size: 20px;
   background-color: orange;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   box-shadow: 0px 0px 10px 5px #ffffff1a;
 }
 
@@ -128,8 +146,8 @@
   outline: none;
   cursor: pointer;
   font-size: 20px;
-  background-color: green;
-  border-radius: 25px;
+  background-color: #FCC9B5;
+  /* border-radius: 25px; */
   box-shadow: 0px 0px 10px 5px #ffffff1a;
 }
 

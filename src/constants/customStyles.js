@@ -35,7 +35,8 @@ export const customStyles = {
     menu: (styles) => {
       return {
         ...styles,
-        backgroundColor: "#fff",
+        // backgroundColor: "#fff",
+        backgroundColor: "#FCC9B5",
         maxWidth: "14rem",
         border: "2px solid #000000",
         borderRadius: "5px",
